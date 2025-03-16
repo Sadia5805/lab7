@@ -20,5 +20,7 @@ class FColors {
   static const offGreen = Color(0xFFEEFAF6);
   static const offRed = Color(0xFFFCECEF);
 
-    static const oceanBlue = Color(0xFF3669C9);
+  // Font Colors
+  static const oceanBlue = Color(0xFF3669C9);
+  static const dark = Color(0xFF000000);
 }

@@ -1,38 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/colors.dart/colors.dart';
 import 'package:icons_plus/icons_plus.dart';
-class FAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const FAppBar({
-    super.key,
-  });
+
+import '../../../common/widgets/app_bar.dart';
+import '../widgets/bottom_nav_bar.dart';
+
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  int _currentIndex = 0;
+  final List<Widget> _homeScreens = [
+    Container(
+      height: double.infinity,
+      color: Colors.amber,
+    ),
+    Container(
+      height: double.infinity,
+      color: Colors.red,
+    ),
+    Container(
+      height: double.infinity,
+      color: Colors.lightBlue,
+    ),
+    Container(
+      height: double.infinity,
+      color: Colors.green,
+    ),
+  ];
+  void _onTapMethod(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      title: Text(
-        "Mega Shop",
-        style: TextStyle(
-          fontFamily: "DMSans",
-          fontWeight: FontWeight.w700,
-          color: FColors.oceanBlue,
-        ),
+    return Scaffold(
+      appBar: FAppBar(
+        title: "Mega Shop",
+        firstIcon: Iconsax.notification_bing_outline,
       ),
-      centerTitle: true,
-      actions: [
-        Container(
-          padding: EdgeInsets.all(10),
-          child: Icon(Iconsax.notification_bing_outline),
-        ),
-        Container(
-          padding: EdgeInsets.all(10),
-          child: Icon( HeroIcons.shopping_cart
-           
-          ),
-        ),
-      ],
+      body: _homeScreens[_currentIndex],
+      bottomNavigationBar: FBottomBar(
+        currentIndex: 0,
+        ontapMethod: _onTapMethod,
+      ),
     );
   }
 }
